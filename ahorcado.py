@@ -2,6 +2,12 @@ import random
 
 
 class juegoAhorcado:
+    """
+    .. include:: ./README.md
+    """
+    """
+    Esta clase permite crear objetos para poder jugar al ahorcado
+    """
     ESTADOS = [
         r"""
          +--+
@@ -72,6 +78,7 @@ class juegoAhorcado:
 
     tematica = 'FRUTAS MARCAS JUEGOS'.split()
     tematica_azar = random.choice(tematica)
+
     if tematica_azar == 'FRUTAS':
         palabras_tematica = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO ' \
                             'LIMA LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
@@ -81,7 +88,9 @@ class juegoAhorcado:
         palabras_tematica = 'MINECRAFT GTAV ROBLOX VALORANT LOL COUNTER ROCKET'.split()
 
     def jugar(self):
-
+        """
+        Esta función es la que utiliza las otras funciones para poder jugar, es la "base del juego".
+        """
         letras_incorrectas = []
         letras_correctas = []
         palabra_adivinar = random.choice(self.palabras_tematica)
@@ -116,6 +125,12 @@ class juegoAhorcado:
                     break
 
     def dibujar(self, letras_incorrectas, letras_correctas, palabra_adivinar):
+        """
+        Esta función printea el muñeco colgado e indica la tematica y las letras incorrectas dichas.
+        :param letras_incorrectas: letras incorrectas anteriormente dichas
+        :param letras_correctas: letras correctas anteriormente dichas
+        :param palabra_adivinar: palabra que se debe adivinar
+        """
         print(self.ESTADOS[len(letras_incorrectas)])
         print('La categoría es: ', self.tematica_azar)
         print()
@@ -136,6 +151,12 @@ class juegoAhorcado:
         print(' '.join(espacio_letras))
 
     def DIMELETRA(self, letras_dichas, palabra_adivinar):
+        """
+        Esta función pide al jugador una letra por teclado para adivinar la palabra
+        :param letras_dichas: letras correctas e incorrectas anteriormente dichas
+        :param palabra_adivinar: palabra que se debe adivinar
+        :return: adivina(letra introducida por el usuario)
+        """
         while True:
             print('Adivina una letra.')
             adivina = input('> ').upper()
@@ -154,7 +175,12 @@ class juegoAhorcado:
                 return adivina
 
     def contarIntentos(self, letras_incorrectas):
-        print(-(len(letras_incorrectas) - len(self.ESTADOS) - 1)-2)
+        """
+        Funcion para visualizar el numero de intentos restantes
+        :param letras_incorrectas: letras incorrectas anteriormente dichas
+        """
+        print(-(len(letras_incorrectas) - len(self.ESTADOS) - 1) - 2)
+
 
 if __name__ == '__main__':
     juego1 = juegoAhorcado()
