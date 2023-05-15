@@ -70,8 +70,15 @@ class juegoAhorcado:
         / \ |
         ====="""]
 
-    tematica = 'FRUTAS'
-    palabras_tematica = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO LIMA LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
+    tematica = 'FRUTAS MARCAS JUEGOS'.split()
+    tematica_azar = random.choice(tematica)
+    if tematica_azar == 'FRUTAS':
+        palabras_tematica = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO ' \
+                            'LIMA LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
+    elif tematica_azar == 'MARCAS':
+        palabras_tematica = 'FORD AUDI TOYOTA VOLKSWAGEN FERRARI TESLA PEUGEOT SEAT'.split()
+    elif tematica_azar == 'JUEGOS':
+        palabras_tematica = 'MINECRAFT GTAV ROBLOX VALORANT LOL COUNTER ROCKET'.split()
 
     def jugar(self):
 
@@ -82,7 +89,7 @@ class juegoAhorcado:
         while True:
             self.dibujar(letras_incorrectas, letras_correctas, palabra_adivinar)
 
-            nueva_letra = self.DIMELETRA(letras_incorrectas + letras_correctas)
+            nueva_letra = self.DIMELETRA(letras_incorrectas + letras_correctas, palabra_adivinar)
 
             if nueva_letra in palabra_adivinar:
 
@@ -110,7 +117,7 @@ class juegoAhorcado:
 
     def dibujar(self, letras_incorrectas, letras_correctas, palabra_adivinar):
         print(self.ESTADOS[len(letras_incorrectas)])
-        print('La categoría es: ', self.tematica)
+        print('La categoría es: ', self.tematica_azar)
         print()
 
         print('Letras incorrectas: ', end='')
@@ -128,11 +135,13 @@ class juegoAhorcado:
 
         print(' '.join(espacio_letras))
 
-    def DIMELETRA(self, letras_dichas):
+    def DIMELETRA(self, letras_dichas, palabra_adivinar):
         while True:
             print('Adivina una letra.')
             adivina = input('> ').upper()
-            if(adivina == 'TERMINAR'):
+            if (adivina == 'TERMINAR'):
+                print(self.ESTADOS[6])
+                print(f"La palabra era {palabra_adivinar}")
                 break
             elif len(adivina) != 1:
                 print('Introduce una única letra.')
