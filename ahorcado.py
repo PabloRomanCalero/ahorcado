@@ -132,7 +132,9 @@ class juegoAhorcado:
         while True:
             print('Adivina una letra.')
             adivina = input('> ').upper()
-            if len(adivina) != 1:
+            if(adivina == 'TERMINAR'):
+                break
+            elif len(adivina) != 1:
                 print('Introduce una única letra.')
             elif adivina in letras_dichas:
                 print('Esa letra ya la sabías. Elige otra vez.')
