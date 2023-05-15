@@ -81,7 +81,7 @@ class juegoAhorcado:
         nombre = input("Dime tu nombre")
         while True:
             self.dibujar(letras_incorrectas, letras_correctas, palabra_adivinar)
-
+            self.contarIntentos(letras_incorrectas)
             nueva_letra = self.DIMELETRA(letras_incorrectas + letras_correctas)
 
             if nueva_letra in palabra_adivinar:
@@ -142,6 +142,8 @@ class juegoAhorcado:
             else:
                 return adivina
 
+    def contarIntentos(self, letras_incorrectas):
+        print(-(len(letras_incorrectas) - len(self.ESTADOS) - 1)-2)
 
 if __name__ == '__main__':
     juego1 = juegoAhorcado()
